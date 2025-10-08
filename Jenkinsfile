@@ -38,10 +38,10 @@ pipeline {
             }
         }
 
-        stage('Deploy with Ansible') {
-            steps {
-                sh 'ansible-playbook ansible/deploy.yml -i ansible/inventory.ini'
-            }
-        }
+        // stage('Deploy with Ansible') {
+        //     steps {
+        //         sh 'ansible-playbook ansible/deploy.yml -i ansible/inventory.ini'
+        //     }
+        // }
     }
 }
