@@ -32,8 +32,8 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([string(credentialsId: 'dockerhub-password', variable: 'DOCKER_PASS')]) {
-                    sh 'echo $DOCKER_PASS | docker login -u your-dockerhub-username --password-stdin'
-                    sh 'docker push your-dockerhub-username/scientific-calculator:latest'
+                    sh 'echo $DOCKER_PASS | docker login -u akhilballa112 --password-stdin'
+                    sh 'docker push akhilballa112/scientific-calculator:latest'
                 }
             }
         }
