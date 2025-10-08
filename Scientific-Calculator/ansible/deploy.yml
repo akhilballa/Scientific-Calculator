@@ -1,0 +1,12 @@
+---
+- name: Deploy Scientific Calculator Container
+  hosts: local
+  tasks:
+    - name: Pull Docker image from Docker Hub
+      command: docker pull your-dockerhub-username/scientific-calculator:latest
+
+    - name: Stop existing container if running
+      command: docker rm -f sci_calc || true
+
+    - name: Run the Docker container
+      command: docker run -d --name sci_calc your-dockerhub-username/scientific-calculator:latest
