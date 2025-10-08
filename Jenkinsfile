@@ -25,7 +25,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 echo 'Building Docker image...'
-                sh 'docker build -t your-dockerhub-username/scientific-calculator:latest .'
+                sh 'docker build -t akhilballa112/scientific-calculator:latest .'
             }
         }
 
