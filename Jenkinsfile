@@ -12,6 +12,12 @@ pipeline {
             }
         }
 
+        stage('Check Workspace') {
+            steps {
+                sh 'ls -la'
+            }
+        }
+        
         stage('Build') {
             steps {
                 echo 'Installing dependencies...'
