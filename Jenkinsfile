@@ -17,7 +17,7 @@ pipeline {
                 sh 'ls -la'
             }
         }
-        
+
         stage('Build') {
             steps {
                 echo 'Installing dependencies...'
@@ -37,7 +37,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 echo 'Building Docker image...'
-                sh 'docker build -t akhilballa112/scientific-calculator:latest -f Dockerfile ./'
+                sh 'docker build -t akhilballa112/scientific-calculator:latest ./'
             }
         }
 
