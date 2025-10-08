@@ -18,7 +18,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                sh 'python -m unittest discover calculator'
+                sh 'python3 -m unittest discover calculator'
             }
         }
 
