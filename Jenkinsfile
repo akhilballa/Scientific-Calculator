@@ -41,14 +41,24 @@ pipeline {
             }
         }
 
+        // stage('Push to Docker Hub') {
+        //     steps {
+        //         withCredentials([string(credentialsId: 'dockerhub-password', variable: 'DOCKER_PASS')]) {
+        //             sh 'echo $DOCKER_PASS | docker login -u akhilballa112 --password-stdin'
+        //             sh 'docker push akhilballa112/scientific-calculator:latest'
+        //         }
+        //     }
+        // }
+
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'dockerhub-password', variable: 'DOCKER_PASS')]) {
-                    sh 'echo $DOCKER_PASS | docker login -u akhilballa112 --password-stdin'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     sh 'docker push akhilballa112/scientific-calculator:latest'
                 }
             }
         }
+
 
         // stage('Deploy with Ansible') {
         //     steps {
