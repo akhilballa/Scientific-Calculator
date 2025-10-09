@@ -4,7 +4,7 @@ FROM python:3.13-slim
 # Set working directory
 # WORKDIR /app
 
-# Copy project files
+# Copy project file
 COPY calculator/ ./calculator/
 COPY requirements.txt .
 
