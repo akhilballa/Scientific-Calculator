@@ -11,5 +11,4 @@ COPY requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# back to normal.
 CMD ["python3", "calculator/calculator.py"]
