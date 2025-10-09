@@ -1,12 +1,38 @@
+# ---
+# - name: Deploy Scientific Calculator Container
+#   hosts: local
+#   tasks:
+#     - name: Pull Docker image from Docker Hub
+#       command: docker pull akhilballa112/scientific-calculator:latest
+
+#     - name: Stop existing container if running
+#       command: docker rm -f sci_calc || true
+
+#     - name: Run the Docker container
+#       command: docker run -d --name sci_calc akhilballa112/scientific-calculator:latest
+
+
 ---
-- name: Deploy Scientific Calculator Container
-  hosts: local
+- name: Deploy Scientific Calculator container
+  hosts: localhost
+  become: yes
   tasks:
-    - name: Pull Docker image from Docker Hub
+
+    - name: Stop and remove existing container if running
+      shell: |
+        if [ "$(docker ps -q -f name=scientific-calculator)" ]; then
+            docker stop scientific-calculator
+            docker rm scientific-calculator
+        fi
+      ignore_errors: yes
+
+    - name: Pull latest image from Docker Hub
       command: docker pull akhilballa112/scientific-calculator:latest
 
-    - name: Stop existing container if running
-      command: docker rm -f sci_calc || true
-
-    - name: Run the Docker container
-      command: docker run -d --name sci_calc akhilballa112/scientific-calculator:latest
+    - name: Run Scientific Calculator container
+      shell: |
+        docker run -d \
+          --name scientific-calculator \
+          --restart always \
+          -p 5000:5000 \
+          akhilballa112/scientific-calculator:latest
