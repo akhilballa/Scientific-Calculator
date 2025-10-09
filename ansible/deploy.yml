@@ -12,6 +12,26 @@
 #       command: docker run -d --name sci_calc akhilballa112/scientific-calculator:latest
 
 
+# ---
+# - name: Deploy Scientific Calculator container
+#   hosts: localhost
+#   connection: local
+#   tasks:
+#     - name: Stop and remove existing container if running
+#       shell: |
+#         if [ "$(docker ps -q -f name=scientific-calculator)" ]; then
+#             docker stop scientific-calculator
+#             docker rm scientific-calculator
+#         fi
+#       ignore_errors: yes
+
+#     - name: Pull latest image from Docker Hub
+#       command: docker pull akhilballa112/scientific-calculator:latest
+
+#     - name: Run Scientific Calculator container interactively
+#       command: docker run --rm -it --name scientific-calculator akhilballa112/scientific-calculator:latest
+
+
 ---
 - name: Deploy Scientific Calculator container
   hosts: localhost
@@ -28,6 +48,5 @@
     - name: Pull latest image from Docker Hub
       command: docker pull akhilballa112/scientific-calculator:latest
 
-    - name: Run Scientific Calculator container interactively
-      command: docker run --rm -it --name scientific-calculator akhilballa112/scientific-calculator:latest
-
+    - name: Run Scientific Calculator container in detached mode and keep it alive
+      command: docker run -d --name scientific-calculator akhilballa112/scientific-calculator:latest tail -f /dev/null
