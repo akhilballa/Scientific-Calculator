@@ -41,7 +41,7 @@ pipeline {
             }
         }
 
-        // stage('Push to Docker Hub') {
+        // stage('Push to Docker Hub')  {
         //     steps {
         //         withCredentials([string(credentialsId: 'dockerhub-password', variable: 'DOCKER_PASS')]) {
         //             sh 'echo $DOCKER_PASS | docker login -u akhilballa112 --password-stdin'
