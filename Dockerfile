@@ -2,7 +2,7 @@
 FROM python:3.13-slim
 
 # Set working directory
-WORKDIR /app
+# WORKDIR /app
 
 # Copy project files
 COPY calculator/ ./calculator/
