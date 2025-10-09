@@ -37,11 +37,11 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: Stop and remove existing container if running
+
+    - name: Stop and remove existing container if it exists
       shell: |
-        if [ "$(docker ps -q -f name=scientific-calculator)" ]; then
-            docker stop scientific-calculator
-            docker rm scientific-calculator
+        if [ "$(docker ps -aq -f name=scientific-calculator)" ]; then
+            docker rm -f scientific-calculator
         fi
       ignore_errors: yes
 
@@ -49,4 +49,8 @@
       command: docker pull akhilballa112/scientific-calculator:latest
 
     - name: Run Scientific Calculator container in detached mode and keep it alive
-      command: docker run -d --name scientific-calculator akhilballa112/scientific-calculator:latest tail -f /dev/null
+      command: >
+        docker run -d
+        --name scientific-calculator
+        akhilballa112/scientific-calculator:latest
+        tail -f /dev/null
